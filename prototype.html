@@ -49,13 +49,11 @@
         }
 
         .prototype-container {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(229, 231, 235, 0.5);
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
             border-radius: 24px;
             padding: 30px;
-            margin: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         }
 
         .prototype-container:hover {
@@ -66,7 +64,7 @@
         .phone-frame {
             width: 375px;
             height: 812px;
-            background: #FFFFFF;
+            background: #fafafa;
             border-radius: 44px;
             padding: 20px;
             box-shadow: 
@@ -83,7 +81,7 @@
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            background: #1a1a1a;
             color: white;
             padding: 6px 16px;
             border-radius: 20px;
@@ -95,20 +93,20 @@
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            background: linear-gradient(135deg, #1a1a1a, #404040);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            background: linear-gradient(135deg, #1a1a1a, #404040);
         }
 
         .custom-shadow {
@@ -126,19 +124,16 @@
         }
 
         .card {
-            background: white;
+            background: #ffffff;
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
 
         .card:hover {
-            box-shadow: 
-                0 10px 15px -3px rgba(0, 0, 0, 0.08),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         }
 
         .custom-checkbox {
@@ -154,8 +149,8 @@
         }
 
         .custom-checkbox:checked {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #1a1a1a;
+            border-color: #1a1a1a;
         }
 
         .custom-checkbox:checked::after {
@@ -169,21 +164,21 @@
         }
 
         .progress-bar {
-            height: 8px;
-            background: #F3F4F6;
-            border-radius: 4px;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
-            border-radius: 4px;
+            background: #1a1a1a;
+            border-radius: 3px;
             transition: width 0.5s ease;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            background: #1a1a1a;
             border-radius: 16px;
             padding: 20px;
             color: white;
@@ -201,18 +196,34 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
             pointer-events: none;
         }
+
+        .page-background {
+            background: #ffffff;
+        }
+
+        .accent-color {
+            color: #FF6B6B;
+        }
+
+        .accent-bg {
+            background-color: #FF6B6B;
+        }
+
+        .soft-shadow {
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.1);
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen p-8">
+<body class="page-background min-h-screen p-8">
     <div class="max-w-7xl mx-auto">
         <!-- 标题部分 -->
         <div class="text-center mb-16 slide-in">
-            <h1 class="text-5xl font-bold gradient-text mb-4 animate-float">AI考研学习规划</h1>
+            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-float">AI考研学习规划</h1>
             <p class="text-gray-600 text-lg">优雅而高效的学习体验设计</p>
         </div>
 
         <!-- 设计系统展示 -->
-        <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-12 mb-16 shadow-xl slide-in" style="animation-delay: 0.2s">
+        <div class="bg-white rounded-3xl p-12 mb-16 shadow-sm slide-in" style="animation-delay: 0.2s">
             <h2 class="text-3xl font-bold mb-8 gradient-text">设计系统</h2>
             
             <!-- 颜色系统 -->
@@ -315,7 +326,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
             <!-- 邀请码页面 -->
             <div class="prototype-container slide-in" style="animation-delay: 0.4s">
-                <div class="phone-frame bg-gradient-to-br from-blue-50 to-indigo-50">
+                <div class="phone-frame">
                     <div class="design-label">邀请码页面</div>
                     <div class="h-full flex items-center justify-center p-8">
                         <div class="w-full max-w-sm">
@@ -334,7 +345,7 @@
                                         <i class="fas fa-key"></i>
                                     </div>
                                 </div>
-                                <button class="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                                <button class="w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-medium shadow-lg hover:bg-black transition-all duration-300">
                                     开启学习之旅
                                 </button>
                             </div>
@@ -345,7 +356,7 @@
 
             <!-- 引导页 -->
             <div class="prototype-container slide-in" style="animation-delay: 0.6s">
-                <div class="phone-frame bg-white">
+                <div class="phone-frame">
                     <div class="design-label">引导页</div>
                     <div class="h-full p-8">
                         <div class="text-center mb-8">
@@ -381,7 +392,7 @@
                                     <i class="fas fa-clock absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                                 </div>
                             </div>
-                            <button class="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] mt-8">
+                            <button class="w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-medium shadow-lg hover:bg-black transition-all duration-300 mt-8">
                                 完成设置
                             </button>
                         </div>
@@ -391,7 +402,7 @@
 
             <!-- 主功能页面 - 任务 -->
             <div class="prototype-container slide-in" style="animation-delay: 0.8s">
-                <div class="phone-frame bg-gray-50">
+                <div class="phone-frame">
                     <div class="design-label">任务页面</div>
                     <!-- 顶部导航 -->
                     <div class="glass-effect fixed top-0 left-0 right-0 px-6 py-4">
@@ -419,7 +430,7 @@
                                 <h3 class="text-lg font-semibold text-gray-800">今日任务</h3>
                                 <p class="text-sm text-gray-500">2024年5月30日</p>
                             </div>
-                            <div class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium">
+                            <div class="bg-gray-100 text-gray-900 px-4 py-2 rounded-full text-sm font-medium">
                                 75% 已完成
                             </div>
                         </div>
@@ -489,7 +500,7 @@
 
             <!-- 主功能页面 - 数据 -->
             <div class="prototype-container slide-in" style="animation-delay: 1s">
-                <div class="phone-frame bg-gray-50">
+                <div class="phone-frame">
                     <div class="design-label">数据页面</div>
                     <!-- 顶部导航 -->
                     <div class="glass-effect fixed top-0 left-0 right-0 px-6 py-4">
@@ -568,7 +579,7 @@
                         </div>
 
                         <!-- 激励卡片 -->
-                        <div class="card bg-gradient-to-br from-purple-500 to-pink-500 text-white">
+                        <div class="card bg-gray-900 text-white">
                             <div class="flex items-center space-x-4 mb-4">
                                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
                                     <i class="fas fa-quote-right text-xl"></i>
