@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI考研学习规划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    <div id="app" v-cloak>
+        <!-- 邀请码页面 -->
+        <div v-if="currentPage === 'invite'" class="min-h-screen flex items-center justify-center p-4">
+            <div class="w-full max-w-md fade-in">
+                <div class="glass-effect rounded-3xl shadow-xl p-8 space-y-8">
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6">
+                            <div class="absolute inset-0 bg-blue-100 rounded-full transform -rotate-6"></div>
+                            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.0&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Welcome" class="relative w-full h-full rounded-full object-cover shadow-lg">
+                        </div>
+                        <h1 class="text-3xl font-bold gradient-text mb-2">AI考研学习规划</h1>
+                        <p class="text-gray-600">开启你的考研之旅</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <input type="text" v-model="inviteCode" 
+                                   class="w-full px-6 py-4 rounded-xl border-2 border-blue-100 focus:border-blue-500 focus:outline-none bg-white/50 backdrop-blur-sm transition-all duration-200"
+                                   placeholder="请输入邀请码">
+                            <i class="fas fa-key absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <button @click="verifyInviteCode" 
+                                class="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl">
+                            开启学习之旅
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 引导页 -->
+        <div v-if="currentPage === 'onboarding'" class="min-h-screen p-4">
+            <div class="max-w-md mx-auto fade-in">
+                <div class="glass-effect rounded-3xl shadow-xl p-8 space-y-6">
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold gradient-text mb-2">个人信息设置</h2>
+                        <p class="text-gray-600">帮助我们了解你，制定专属计划</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="space-y-4">
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">姓名</label>
+                                <input type="text" v-model="userInfo.name" 
+                                       class="w-full px-6 py-3 rounded-xl border-2 border-blue-100 focus:border-blue-500 focus:outline-none bg-white/50">
+                                <i class="fas fa-user absolute right-4 top-[60%] transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">目标院校</label>
+                                <input type="text" v-model="userInfo.targetSchool" 
+                                       class="w-full px-6 py-3 rounded-xl border-2 border-blue-100 focus:border-blue-500 focus:outline-none bg-white/50">
+                                <i class="fas fa-university absolute right-4 top-[60%] transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">目标专业</label>
+                                <input type="text" v-model="userInfo.targetMajor" 
+                                       class="w-full px-6 py-3 rounded-xl border-2 border-blue-100 focus:border-blue-500 focus:outline-none bg-white/50">
+                                <i class="fas fa-graduation-cap absolute right-4 top-[60%] transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">每日学习时间（小时）</label>
+                                <input type="number" v-model="userInfo.studyHours" 
+                                       class="w-full px-6 py-3 rounded-xl border-2 border-blue-100 focus:border-blue-500 focus:outline-none bg-white/50">
+                                <i class="fas fa-clock absolute right-4 top-[60%] transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <button @click="completeOnboarding" 
+                                class="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl">
+                            完成设置
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主功能页面 -->
+        <div v-if="currentPage === 'main'" class="min-h-screen bg-gray-50">
+            <!-- 顶部导航栏 -->
+            <nav class="glass-effect fixed top-0 left-0 right-0 z-50">
+                <div class="max-w-md mx-auto px-4">
+                    <div class="flex justify-between items-center h-16">
+                        <div class="flex items-center space-x-2">
+                            <img class="h-8 w-8 rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.0&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="Logo">
+                            <span class="font-medium gradient-text">AI考研助手</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-gray-700 font-medium">{{ userInfo.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- 主要内容区域 -->
+            <main class="max-w-md mx-auto px-4 pt-20 pb-24">
+                <!-- 切换标签 -->
+                <div class="flex space-x-2 mb-6 p-1 bg-gray-100 rounded-xl">
+                    <button @click="activeTab = 'tasks'" 
+                            :class="['flex-1 py-3 rounded-lg font-medium transition-all duration-200', 
+                                    activeTab === 'tasks' ? 'bg-white shadow-md text-blue-600' : 'text-gray-500']">
+                        <i class="fas fa-tasks mr-2"></i>今日任务
+                    </button>
+                    <button @click="activeTab = 'stats'" 
+                            :class="['flex-1 py-3 rounded-lg font-medium transition-all duration-200', 
+                                    activeTab === 'stats' ? 'bg-white shadow-md text-blue-600' : 'text-gray-500']">
+                        <i class="fas fa-chart-line mr-2"></i>学习数据
+                    </button>
+                </div>
+
+                <!-- 今日任务页面 -->
+                <div v-if="activeTab === 'tasks'" class="space-y-4 fade-in">
+                    <div v-for="(subject, index) in subjects" :key="index" 
+                         class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center"
+                                     :class="{
+                                         '数学': 'bg-blue-100 text-blue-600',
+                                         '英语': 'bg-green-100 text-green-600',
+                                         '专业课': 'bg-purple-100 text-purple-600'
+                                     }[subject.name]">
+                                    <i :class="{
+                                        '数学': 'fas fa-square-root-alt',
+                                        '英语': 'fas fa-language',
+                                        '专业课': 'fas fa-book'
+                                    }[subject.name]"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800">{{ subject.name }}</h3>
+                            </div>
+                            <div class="relative w-12 h-12">
+                                <svg class="transform -rotate-90 w-12 h-12">
+                                    <circle cx="24" cy="24" r="20" stroke-width="4" stroke="#eee" fill="none"/>
+                                    <circle cx="24" cy="24" r="20" stroke-width="4" stroke="#4F46E5" fill="none"
+                                            :stroke-dasharray="126"
+                                            :stroke-dashoffset="126 - (126 * subject.completionRate / 100)"/>
+                                </svg>
+                                <span class="absolute inset-0 flex items-center justify-center text-sm font-medium text-gray-600">
+                                    {{ subject.completionRate }}%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div v-for="(task, taskIndex) in subject.tasks" :key="taskIndex" 
+                                 class="flex items-center space-x-3 p-3 rounded-xl transition-all duration-200"
+                                 :class="task.completed ? 'bg-gray-50' : 'hover:bg-gray-50'">
+                                <div class="relative">
+                                    <input type="checkbox" v-model="task.completed" 
+                                           class="w-5 h-5 rounded-lg border-2 border-gray-300 focus:ring-0 focus:ring-offset-0 transition-all duration-200 cursor-pointer"
+                                           :class="task.completed ? 'bg-blue-600 border-blue-600' : ''">
+                                    <i class="fas fa-check absolute text-white text-xs top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                                       v-if="task.completed"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span :class="['block text-sm', task.completed ? 'line-through text-gray-400' : 'text-gray-700']">
+                                        {{ task.name }}
+                                    </span>
+                                    <span class="text-xs text-gray-400">预计用时：{{ task.duration }}分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学习数据页面 -->
+                <div v-if="activeTab === 'stats'" class="space-y-6 fade-in">
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">学习概览</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+                                <p class="text-sm opacity-80">连续学习</p>
+                                <div class="flex items-baseline space-x-1">
+                                    <p class="text-3xl font-bold">{{ stats.streakDays }}</p>
+                                    <p class="text-sm opacity-80">天</p>
+                                </div>
+                                <i class="fas fa-fire text-2xl opacity-20 absolute bottom-2 right-2"></i>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-4 text-white">
+                                <p class="text-sm opacity-80">总学习时长</p>
+                                <div class="flex items-baseline space-x-1">
+                                    <p class="text-3xl font-bold">{{ stats.totalHours }}</p>
+                                    <p class="text-sm opacity-80">小时</p>
+                                </div>
+                                <i class="fas fa-clock text-2xl opacity-20 absolute bottom-2 right-2"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">学习进度</h3>
+                        <div class="space-y-6">
+                            <div v-for="(subject, index) in weeklyProgress" :key="index" 
+                                 class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                                             :class="{
+                                                 '数学': 'bg-blue-100 text-blue-600',
+                                                 '英语': 'bg-green-100 text-green-600',
+                                                 '专业课': 'bg-purple-100 text-purple-600'
+                                             }[subject.name]">
+                                            <i :class="{
+                                                '数学': 'fas fa-square-root-alt',
+                                                '英语': 'fas fa-language',
+                                                '专业课': 'fas fa-book'
+                                            }[subject.name]"></i>
+                                        </div>
+                                        <span class="font-medium text-gray-700">{{ subject.name }}</span>
+                                    </div>
+                                    <span class="text-sm font-medium" 
+                                          :class="{
+                                              '数学': 'text-blue-600',
+                                              '英语': 'text-green-600',
+                                              '专业课': 'text-purple-600'
+                                          }[subject.name]">
+                                        {{ subject.completion }}%
+                                    </span>
+                                </div>
+                                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full rounded-full transition-all duration-500"
+                                         :class="{
+                                             '数学': 'bg-blue-600',
+                                             '英语': 'bg-green-600',
+                                             '专业课': 'bg-purple-600'
+                                         }[subject.name]"
+                                         :style="{ width: subject.completion + '%' }"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center text-yellow-600">
+                                <i class="fas fa-quote-right text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">今日激励</h3>
+                                <p class="text-sm text-gray-500">为你加油打气</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600 italic">{{ motivationalQuote }}</p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- 底部导航栏 -->
+            <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+                <div class="max-w-md mx-auto px-4">
+                    <div class="flex justify-around py-3">
+                        <button @click="activeTab = 'tasks'" 
+                                :class="['flex flex-col items-center space-y-1', 
+                                        activeTab === 'tasks' ? 'text-blue-600' : 'text-gray-400']">
+                            <i class="fas fa-tasks text-xl"></i>
+                            <span class="text-xs">任务</span>
+                        </button>
+                        <button @click="activeTab = 'stats'" 
+                                :class="['flex flex-col items-center space-y-1', 
+                                        activeTab === 'stats' ? 'text-blue-600' : 'text-gray-400']">
+                            <i class="fas fa-chart-line text-xl"></i>
+                            <span class="text-xs">数据</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    currentPage: 'invite',
+                    inviteCode: '',
+                    userInfo: {
+                        name: '',
+                        targetSchool: '',
+                        targetMajor: '',
+                        studyHours: null
+                    },
+                    activeTab: 'tasks',
+                    subjects: [
+                        {
+                            name: '数学',
+                            completionRate: 75,
+                            tasks: [
+                                { name: '高等数学第三章习题', duration: 60, completed: false },
+                                { name: '线性代数练习', duration: 45, completed: false },
+                                { name: '概率论重点复习', duration: 30, completed: false }
+                            ]
+                        },
+                        {
+                            name: '英语',
+                            completionRate: 60,
+                            tasks: [
+                                { name: '阅读理解训练', duration: 45, completed: false },
+                                { name: '单词背诵', duration: 30, completed: false },
+                                { name: '听力练习', duration: 30, completed: false }
+                            ]
+                        },
+                        {
+                            name: '专业课',
+                            completionRate: 80,
+                            tasks: [
+                                { name: '专业课重点章节复习', duration: 90, completed: false },
+                                { name: '历年真题练习', duration: 60, completed: false }
+                            ]
+                        }
+                    ],
+                    stats: {
+                        streakDays: 7,
+                        totalHours: 120
+                    },
+                    weeklyProgress: [
+                        { name: '数学', completion: 75 },
+                        { name: '英语', completion: 60 },
+                        { name: '专业课', completion: 80 }
+                    ],
+                    motivationalQuote: '坚持的道路上没有捷径，每一步都是通向成功的基石。继续加油！'
+                }
+            },
+            methods: {
+                verifyInviteCode() {
+                    if (this.inviteCode === '2024') {
+                        this.currentPage = 'onboarding'
+                    } else {
+                        alert('邀请码不正确，请重试')
+                    }
+                },
+                completeOnboarding() {
+                    if (this.validateUserInfo()) {
+                        this.currentPage = 'main'
+                    } else {
+                        alert('请填写完整信息')
+                    }
+                },
+                validateUserInfo() {
+                    return this.userInfo.name && 
+                           this.userInfo.targetSchool && 
+                           this.userInfo.targetMajor && 
+                           this.userInfo.studyHours
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html> 
