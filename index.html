@@ -100,39 +100,211 @@
         </div>
         
         <!-- 数学任务 -->
-        <div class="mb-8">
+        <div class="mb-12">
             <h3 class="text-sm text-gray-400 mb-4 uppercase tracking-wider">数学</h3>
-            <div class="space-y-4">
+            <div class="space-y-6">
+                <!-- 高数任务 -->
                 <div class="task-item bg-gray-50 p-6 rounded-xl">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between mb-4">
                         <div>
-                            <span class="font-medium text-gray-900">高数第三章</span>
-                            <p class="text-sm text-gray-500 mt-1">• 极限与连续</p>
+                            <span class="font-medium text-gray-900">高等数学</span>
+                            <p class="text-sm text-gray-500 mt-1">第三章 - 微分方程</p>
                         </div>
-                        <button onclick="toggleTask(this)" 
-                                class="checkbox w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
-                        </button>
+                        <span class="text-xs text-gray-400">预计 120 分钟</span>
+                    </div>
+                    <div class="space-y-3 ml-4 mt-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 极限与连续性概念</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 函数极限计算</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 练习题 3.1-3.2</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 线代任务 -->
+                <div class="task-item bg-gray-50 p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="font-medium text-gray-900">线性代数</span>
+                            <p class="text-sm text-gray-500 mt-1">第二章 - 矩阵运算</p>
+                        </div>
+                        <span class="text-xs text-gray-400">预计 90 分钟</span>
+                    </div>
+                    <div class="space-y-3 ml-4 mt-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 矩阵乘法</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 逆矩阵求解</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 英语任务 -->
-        <div class="mb-8">
+        <div class="mb-12">
             <h3 class="text-sm text-gray-400 mb-4 uppercase tracking-wider">英语</h3>
-            <div class="space-y-4">
+            <div class="space-y-6">
                 <div class="task-item bg-gray-50 p-6 rounded-xl">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between mb-4">
                         <div>
-                            <span class="font-medium text-gray-900">阅读理解练习</span>
-                            <p class="text-sm text-gray-500 mt-1">• 完成今日练习题</p>
+                            <span class="font-medium text-gray-900">阅读理解专项</span>
+                            <p class="text-sm text-gray-500 mt-1">2023年真题解析</p>
                         </div>
-                        <button onclick="toggleTask(this)"
-                                class="checkbox w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
-                        </button>
+                        <span class="text-xs text-gray-400">预计 60 分钟</span>
+                    </div>
+                    <div class="space-y-3 ml-4 mt-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 文章结构分析</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 核心词汇记忆</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">• 题目演练</span>
+                            <button onclick="toggleTask(this)" 
+                                    class="checkbox w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center hover:border-black transition-colors">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 数据统计页面 -->
+    <div id="stats-page" class="page max-w-md mx-auto p-8 pb-24">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-light">学习数据</h2>
+            <div class="flex items-center">
+                <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                <span class="text-sm text-gray-500">本周进度</span>
+            </div>
+        </div>
+
+        <!-- 学习概览 -->
+        <div class="grid grid-cols-2 gap-4 mb-12">
+            <div class="bg-gray-50 p-6 rounded-xl">
+                <div class="text-3xl font-light text-black mb-2">21</div>
+                <div class="text-sm text-gray-500">连续学习天数</div>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-xl">
+                <div class="text-3xl font-light text-black mb-2">89%</div>
+                <div class="text-sm text-gray-500">任务完成率</div>
+            </div>
+        </div>
+
+        <!-- 学科进度 -->
+        <div class="mb-12">
+            <h3 class="text-sm text-gray-400 mb-6 uppercase tracking-wider">学科进度</h3>
+            <div class="space-y-8">
+                <!-- 数学进度 -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-900">数学</span>
+                        <span class="text-sm text-gray-500">85%</span>
+                    </div>
+                    <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-black rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- 英语进度 -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-900">英语</span>
+                        <span class="text-sm text-gray-500">72%</span>
+                    </div>
+                    <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-black rounded-full" style="width: 72%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 每周学习时长 -->
+        <div class="mb-12">
+            <h3 class="text-sm text-gray-400 mb-6 uppercase tracking-wider">每周学习时长</h3>
+            <div class="bg-gray-50 p-6 rounded-xl">
+                <div class="grid grid-cols-7 gap-2">
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-3/4 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">一</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-1/2 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">二</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">三</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-2/3 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">四</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-4/5 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">五</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-1/3 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">六</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-2/5 w-full bg-black rounded-full"></div>
+                        </div>
+                        <span class="text-xs text-gray-400 mt-2">日</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 激励卡片 -->
+        <div class="bg-black text-white p-6 rounded-xl">
+            <div class="text-sm mb-4">今日激励</div>
+            <p class="text-lg font-light leading-relaxed">
+                你已经超越了80%的考研党，继续保持！每一个坚持的日子都在让你离目标更近一步。
+            </p>
         </div>
     </div>
 
@@ -211,6 +383,13 @@
             });
             event.currentTarget.classList.remove('text-gray-300');
             event.currentTarget.classList.add('text-black');
+
+            // 显示对应的页面
+            if (tab === 'tasks') {
+                showPage('main-page');
+            } else if (tab === 'stats') {
+                showPage('stats-page');
+            }
         }
     </script>
 </body>
